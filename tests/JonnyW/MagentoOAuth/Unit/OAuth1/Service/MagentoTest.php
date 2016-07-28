@@ -184,7 +184,7 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
 
         $uri->expects($this->once())
             ->method('setPath')
-            ->with($this->identicalTo('/admin/oAuth_authorize'));
+            ->with($this->identicalTo('/admin/oauth_authorize'));
 
         $magento->getAuthorizationEndpoint();
     }
