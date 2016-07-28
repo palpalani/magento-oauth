@@ -24,7 +24,7 @@ class Magento extends AbstractService
     const REQUEST_TOKEN_ENDPOINT             = '/oauth/initiate';
     const ACCESS_TOKEN_ENDPOINT              = '/oauth/token';
     const AUTHORIZATION_ENDPOINT_CUSTOMER    = '/oauth/authorize';
-    const AUTHORIZATION_ENDPOINT_ADMIN       = '/admin/oAuth_authorize';
+    const AUTHORIZATION_ENDPOINT_ADMIN       = '/admin/oauth_authorize';
 
     /**
      * Authorization endpoint
