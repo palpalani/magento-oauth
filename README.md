@@ -1,19 +1,14 @@
-magento-oauth
-=============
+# Magento oauth
 
 A service class for Magento OAuth using the [Lusitanian PHP OAuth](https://github.com/Lusitanian/PHPoAuthLib) library.
 
-[![Total Downloads](https://poser.pugx.org/jonnyw/magento-oauth/downloads.png)](https://packagist.org/packages/jonnyw/magento-oauth) [![Latest Stable Version](https://poser.pugx.org/jonnyw/magento-oauth/v/stable.png)](https://packagist.org/packages/jonnyw/magento-oauth) [![Build Status](https://travis-ci.org/jonnnnyw/magento-oauth.png?branch=master)](https://travis-ci.org/jonnnnyw/magento-oauth) [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/jonnnnyw/magento-oauth/badges/quality-score.png?s=0441e6221b048c5d83e2ab19dfe74456fabc0774)](https://scrutinizer-ci.com/g/jonnnnyw/magento-oauth/) [![Code Coverage](https://scrutinizer-ci.com/g/jonnnnyw/magento-oauth/badges/coverage.png?s=948ef83491cc08e6b57fc980a5232f85917b6e82)](https://scrutinizer-ci.com/g/jonnnnyw/magento-oauth/)
+[![Total Downloads](https://poser.pugx.org/jonnyw/magento-oauth/downloads.png)](https://packagist.org/packages/jonnyw/magento-oauth) 
+[![Latest Stable Version](https://poser.pugx.org/jonnyw/magento-oauth/v/stable.png)](https://packagist.org/packages/jonnyw/magento-oauth)
+[![Latest Version](https://img.shields.io/github/release/palpalani/magento-oauth.svg?style=flat)](https://github.com/palpalani/magento-oauth/releases)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/palpalani/magento-oauth/run-tests?label=tests)](https://github.com/palpalani/magento-oauth/actions?query=workflow%3ATests+branch%3Amaster)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/palpalani/magento-oauth/Check%20&%20fix%20styling?label=code%20style)](https://github.com/palpalani/magento-oauth/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
 
-0.0 Table of Contents
----------------------
-
-* Examples
-* Changelog
-* Troubleshooting
-
-
-1.0 Examples
+## Examples
 ------------
 
 A working example can be found in the examples/ directory of the repo.
@@ -62,12 +57,8 @@ use JonnyW\MagentoOAuth\OAuth1\Service\Magento;
 $magentoService->setAuthorizationEndpoint(Magento::AUTHORIZATION_ENDPOINT_CUSTOMER);
 ```
 
-2.0 Changelog
-------------
 
-
-3.0 Troubleshooting
-------------
+## Troubleshooting
 
 If you receive a 'Server can not understand Accept HTTP header media type' error message when making API requests through the service then you may need to add an 'Accept' header to the request:
 
@@ -87,7 +78,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 ## Contributing
 
-Please see [CONTRIBUTING](https://github.com/spatie/.github/blob/main/CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](https://github.com/palpalani/magento-oauth/CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 
@@ -95,7 +86,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [palpalani](https://github.com/palpalani)
 - [All Contributors](../../contributors)
 
 ## License
