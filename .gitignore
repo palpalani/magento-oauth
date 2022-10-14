@@ -1,7 +1,10 @@
-.DS_Store
+.idea
+.phpunit.result.cache
+build
 composer.lock
-test.sh
-docs.sh
-vendor/
-bin/
-
+coverage
+docs
+phpunit.xml
+psalm.xml
+vendor
+.php-cs-fixer.cache
