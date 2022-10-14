@@ -2,15 +2,25 @@
     "name": "jonnyw/magento-oauth",
     "description": "Magento OAuth Test",
 	"type": "library",
+    "keywords": [
+        "magento oauth",
+        "palpalani"
+    ],
     "license": "MIT",
+    "authors": [
+        {
+            "name": ":author_name",
+            "email": "author@domain.com",
+            "role": "Developer"
+        }
+    ],
     "minimum-stability": "stable",
     "require": {
-    	"php": ">=5.3.0"
-    },
-    "require": {
+    	"php": ">=5.3.0",
         "lusitanian/oauth": "*"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.0",
         "phpunit/phpunit": "3.7.*"
     },
     "autoload": {
@@ -19,7 +29,18 @@
         },
         "classmap": ["src/"]
     },
+    "autoload-dev": {
+        "psr-4": {
+            "JonnyW\\MagentoOAuth\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+    },
     "config": {
-        "bin-dir": "bin"
-    }
+        "bin-dir": "bin",
+        "sort-packages": true
+    },
+    "prefer-stable": true
 }
