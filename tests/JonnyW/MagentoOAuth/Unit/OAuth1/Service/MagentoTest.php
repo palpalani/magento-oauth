@@ -6,14 +6,15 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace JonnyW\MagentoOAuth\Unit\OAuth1\Service;
 
+use JonnyW\MagentoOAuth\OAuth1\Service\Magento;
 use OAuth\Common\Consumer\CredentialsInterface;
-use OAuth\Common\Storage\TokenStorageInterface;
-use OAuth\OAuth1\Signature\SignatureInterface;
 use OAuth\Common\Http\Client\ClientInterface;
 use OAuth\Common\Http\Uri\Uri;
-use JonnyW\MagentoOAuth\OAuth1\Service\Magento;
+use OAuth\Common\Storage\TokenStorageInterface;
+use OAuth\OAuth1\Signature\SignatureInterface;
 
 /**
  * Magento OAuth
@@ -32,10 +33,10 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('OAuth\Common\Exception\Exception');
 
-        $credentials    = $this->getCredentials();
-        $httpClient     = $this->getHttpClient();
-        $tokenStorage   = $this->getTokenStorage();
-        $signature      = $this->getSignature();
+        $credentials = $this->getCredentials();
+        $httpClient = $this->getHttpClient();
+        $tokenStorage = $this->getTokenStorage();
+        $signature = $this->getSignature();
 
         $this->getMagentoService($credentials, $httpClient, $tokenStorage, $signature, null);
     }
@@ -48,11 +49,11 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetRequestTokenEndpointReturnsInstanceOfUri()
     {
-        $credentials    = $this->getCredentials();
-        $httpClient     = $this->getHttpClient();
-        $tokenStorage   = $this->getTokenStorage();
-        $signature      = $this->getSignature();
-        $uri            = $this->getUri();
+        $credentials = $this->getCredentials();
+        $httpClient = $this->getHttpClient();
+        $tokenStorage = $this->getTokenStorage();
+        $signature = $this->getSignature();
+        $uri = $this->getUri();
 
         $magento = $this->getMagentoService($credentials, $httpClient, $tokenStorage, $signature, $uri);
 
@@ -67,11 +68,11 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetRequestTokenEndpointSetsInitiatePathOnUriInstance()
     {
-        $credentials    = $this->getCredentials();
-        $httpClient     = $this->getHttpClient();
-        $tokenStorage   = $this->getTokenStorage();
-        $signature      = $this->getSignature();
-        $uri            = $this->getUri();
+        $credentials = $this->getCredentials();
+        $httpClient = $this->getHttpClient();
+        $tokenStorage = $this->getTokenStorage();
+        $signature = $this->getSignature();
+        $uri = $this->getUri();
 
         $magento = $this->getMagentoService($credentials, $httpClient, $tokenStorage, $signature, $uri);
 
@@ -90,11 +91,11 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     public function testAuthorizeEndpointIsSetToAdminScopeByDefault()
     {
-        $credentials    = $this->getCredentials();
-        $httpClient     = $this->getHttpClient();
-        $tokenStorage   = $this->getTokenStorage();
-        $signature      = $this->getSignature();
-        $uri            = $this->getUri();
+        $credentials = $this->getCredentials();
+        $httpClient = $this->getHttpClient();
+        $tokenStorage = $this->getTokenStorage();
+        $signature = $this->getSignature();
+        $uri = $this->getUri();
 
         $magento = $this->getMagentoService($credentials, $httpClient, $tokenStorage, $signature, $uri);
 
@@ -114,11 +115,11 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('OAuth\Common\Exception\Exception');
 
-        $credentials    = $this->getCredentials();
-        $httpClient     = $this->getHttpClient();
-        $tokenStorage   = $this->getTokenStorage();
-        $signature      = $this->getSignature();
-        $uri            = $this->getUri();
+        $credentials = $this->getCredentials();
+        $httpClient = $this->getHttpClient();
+        $tokenStorage = $this->getTokenStorage();
+        $signature = $this->getSignature();
+        $uri = $this->getUri();
 
         $magento = $this->getMagentoService($credentials, $httpClient, $tokenStorage, $signature, $uri);
         $magento->setAuthorizationEndpoint('/an/invalid/endpoint');
@@ -132,11 +133,11 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidAuthorizationEndpointCanBeSet()
     {
-        $credentials    = $this->getCredentials();
-        $httpClient     = $this->getHttpClient();
-        $tokenStorage   = $this->getTokenStorage();
-        $signature      = $this->getSignature();
-        $uri            = $this->getUri();
+        $credentials = $this->getCredentials();
+        $httpClient = $this->getHttpClient();
+        $tokenStorage = $this->getTokenStorage();
+        $signature = $this->getSignature();
+        $uri = $this->getUri();
 
         $magento = $this->getMagentoService($credentials, $httpClient, $tokenStorage, $signature, $uri);
         $magento->setAuthorizationEndpoint(Magento::AUTHORIZATION_ENDPOINT_CUSTOMER);
@@ -155,11 +156,11 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetAuthorizationEndpointReturnsInstanceOfUri()
     {
-        $credentials    = $this->getCredentials();
-        $httpClient     = $this->getHttpClient();
-        $tokenStorage   = $this->getTokenStorage();
-        $signature      = $this->getSignature();
-        $uri            = $this->getUri();
+        $credentials = $this->getCredentials();
+        $httpClient = $this->getHttpClient();
+        $tokenStorage = $this->getTokenStorage();
+        $signature = $this->getSignature();
+        $uri = $this->getUri();
 
         $magento = $this->getMagentoService($credentials, $httpClient, $tokenStorage, $signature, $uri);
 
@@ -174,11 +175,11 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetAuthorizationEndpointSetsAuthorizePathOnUriInstance()
     {
-        $credentials    = $this->getCredentials();
-        $httpClient     = $this->getHttpClient();
-        $tokenStorage   = $this->getTokenStorage();
-        $signature      = $this->getSignature();
-        $uri            = $this->getUri();
+        $credentials = $this->getCredentials();
+        $httpClient = $this->getHttpClient();
+        $tokenStorage = $this->getTokenStorage();
+        $signature = $this->getSignature();
+        $uri = $this->getUri();
 
         $magento = $this->getMagentoService($credentials, $httpClient, $tokenStorage, $signature, $uri);
 
@@ -197,11 +198,11 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetAccessTokenEndpointReturnsInstanceOfUri()
     {
-        $credentials    = $this->getCredentials();
-        $httpClient     = $this->getHttpClient();
-        $tokenStorage   = $this->getTokenStorage();
-        $signature      = $this->getSignature();
-        $uri            = $this->getUri();
+        $credentials = $this->getCredentials();
+        $httpClient = $this->getHttpClient();
+        $tokenStorage = $this->getTokenStorage();
+        $signature = $this->getSignature();
+        $uri = $this->getUri();
 
         $magento = $this->getMagentoService($credentials, $httpClient, $tokenStorage, $signature, $uri);
 
@@ -216,11 +217,11 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetAccessTokenEndpointSetsTokenPathOnUriInstance()
     {
-        $credentials    = $this->getCredentials();
-        $httpClient     = $this->getHttpClient();
-        $tokenStorage   = $this->getTokenStorage();
-        $signature      = $this->getSignature();
-        $uri            = $this->getUri();
+        $credentials = $this->getCredentials();
+        $httpClient = $this->getHttpClient();
+        $tokenStorage = $this->getTokenStorage();
+        $signature = $this->getSignature();
+        $uri = $this->getUri();
 
         $magento = $this->getMagentoService($credentials, $httpClient, $tokenStorage, $signature, $uri);
 
@@ -242,11 +243,11 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('OAuth\Common\Http\Exception\TokenResponseException');
 
-        $credentials    = $this->getCredentials();
-        $httpClient     = $this->getHttpClient();
-        $tokenStorage   = $this->getTokenStorage();
-        $signature      = $this->getSignature();
-        $uri            = $this->getUri();
+        $credentials = $this->getCredentials();
+        $httpClient = $this->getHttpClient();
+        $tokenStorage = $this->getTokenStorage();
+        $signature = $this->getSignature();
+        $uri = $this->getUri();
 
         $magento = $this->getMagentoService($credentials, $httpClient, $tokenStorage, $signature, $uri);
 
@@ -266,11 +267,11 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('OAuth\Common\Http\Exception\TokenResponseException');
 
-        $credentials    = $this->getCredentials();
-        $httpClient     = $this->getHttpClient();
-        $tokenStorage   = $this->getTokenStorage();
-        $signature      = $this->getSignature();
-        $uri            = $this->getUri();
+        $credentials = $this->getCredentials();
+        $httpClient = $this->getHttpClient();
+        $tokenStorage = $this->getTokenStorage();
+        $signature = $this->getSignature();
+        $uri = $this->getUri();
 
         $magento = $this->getMagentoService($credentials, $httpClient, $tokenStorage, $signature, $uri);
 
@@ -290,11 +291,11 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('OAuth\Common\Http\Exception\TokenResponseException');
 
-        $credentials    = $this->getCredentials();
-        $httpClient     = $this->getHttpClient();
-        $tokenStorage   = $this->getTokenStorage();
-        $signature      = $this->getSignature();
-        $uri            = $this->getUri();
+        $credentials = $this->getCredentials();
+        $httpClient = $this->getHttpClient();
+        $tokenStorage = $this->getTokenStorage();
+        $signature = $this->getSignature();
+        $uri = $this->getUri();
 
         $magento = $this->getMagentoService($credentials, $httpClient, $tokenStorage, $signature, $uri);
 
@@ -316,11 +317,11 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('OAuth\Common\Http\Exception\TokenResponseException');
 
-        $credentials    = $this->getCredentials();
-        $httpClient     = $this->getHttpClient();
-        $tokenStorage   = $this->getTokenStorage();
-        $signature      = $this->getSignature();
-        $uri            = $this->getUri();
+        $credentials = $this->getCredentials();
+        $httpClient = $this->getHttpClient();
+        $tokenStorage = $this->getTokenStorage();
+        $signature = $this->getSignature();
+        $uri = $this->getUri();
 
         $magento = $this->getMagentoService($credentials, $httpClient, $tokenStorage, $signature, $uri);
 
@@ -341,11 +342,11 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('OAuth\Common\Http\Exception\TokenResponseException');
 
-        $credentials    = $this->getCredentials();
-        $httpClient     = $this->getHttpClient();
-        $tokenStorage   = $this->getTokenStorage();
-        $signature      = $this->getSignature();
-        $uri            = $this->getUri();
+        $credentials = $this->getCredentials();
+        $httpClient = $this->getHttpClient();
+        $tokenStorage = $this->getTokenStorage();
+        $signature = $this->getSignature();
+        $uri = $this->getUri();
 
         $magento = $this->getMagentoService($credentials, $httpClient, $tokenStorage, $signature, $uri);
 
@@ -366,11 +367,11 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('OAuth\Common\Http\Exception\TokenResponseException');
 
-        $credentials    = $this->getCredentials();
-        $httpClient     = $this->getHttpClient();
-        $tokenStorage   = $this->getTokenStorage();
-        $signature      = $this->getSignature();
-        $uri            = $this->getUri();
+        $credentials = $this->getCredentials();
+        $httpClient = $this->getHttpClient();
+        $tokenStorage = $this->getTokenStorage();
+        $signature = $this->getSignature();
+        $uri = $this->getUri();
 
         $magento = $this->getMagentoService($credentials, $httpClient, $tokenStorage, $signature, $uri);
 
@@ -389,12 +390,11 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     public function testParseRequestTokenResponseReturnsInstanceOfStdOAuth1Token()
     {
-
-        $credentials    = $this->getCredentials();
-        $httpClient     = $this->getHttpClient();
-        $tokenStorage   = $this->getTokenStorage();
-        $signature      = $this->getSignature();
-        $uri            = $this->getUri();
+        $credentials = $this->getCredentials();
+        $httpClient = $this->getHttpClient();
+        $tokenStorage = $this->getTokenStorage();
+        $signature = $this->getSignature();
+        $uri = $this->getUri();
 
         $magento = $this->getMagentoService($credentials, $httpClient, $tokenStorage, $signature, $uri);
 
@@ -417,11 +417,11 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('OAuth\Common\Http\Exception\TokenResponseException');
 
-        $credentials    = $this->getCredentials();
-        $httpClient     = $this->getHttpClient();
-        $tokenStorage   = $this->getTokenStorage();
-        $signature      = $this->getSignature();
-        $uri            = $this->getUri();
+        $credentials = $this->getCredentials();
+        $httpClient = $this->getHttpClient();
+        $tokenStorage = $this->getTokenStorage();
+        $signature = $this->getSignature();
+        $uri = $this->getUri();
 
         $magento = $this->getMagentoService($credentials, $httpClient, $tokenStorage, $signature, $uri);
 
@@ -441,11 +441,11 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('OAuth\Common\Http\Exception\TokenResponseException');
 
-        $credentials    = $this->getCredentials();
-        $httpClient     = $this->getHttpClient();
-        $tokenStorage   = $this->getTokenStorage();
-        $signature      = $this->getSignature();
-        $uri            = $this->getUri();
+        $credentials = $this->getCredentials();
+        $httpClient = $this->getHttpClient();
+        $tokenStorage = $this->getTokenStorage();
+        $signature = $this->getSignature();
+        $uri = $this->getUri();
 
         $magento = $this->getMagentoService($credentials, $httpClient, $tokenStorage, $signature, $uri);
 
@@ -464,11 +464,11 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('OAuth\Common\Http\Exception\TokenResponseException');
 
-        $credentials    = $this->getCredentials();
-        $httpClient     = $this->getHttpClient();
-        $tokenStorage   = $this->getTokenStorage();
-        $signature      = $this->getSignature();
-        $uri            = $this->getUri();
+        $credentials = $this->getCredentials();
+        $httpClient = $this->getHttpClient();
+        $tokenStorage = $this->getTokenStorage();
+        $signature = $this->getSignature();
+        $uri = $this->getUri();
 
         $magento = $this->getMagentoService($credentials, $httpClient, $tokenStorage, $signature, $uri);
 
@@ -489,11 +489,11 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('OAuth\Common\Http\Exception\TokenResponseException');
 
-        $credentials    = $this->getCredentials();
-        $httpClient     = $this->getHttpClient();
-        $tokenStorage   = $this->getTokenStorage();
-        $signature      = $this->getSignature();
-        $uri            = $this->getUri();
+        $credentials = $this->getCredentials();
+        $httpClient = $this->getHttpClient();
+        $tokenStorage = $this->getTokenStorage();
+        $signature = $this->getSignature();
+        $uri = $this->getUri();
 
         $magento = $this->getMagentoService($credentials, $httpClient, $tokenStorage, $signature, $uri);
 
@@ -512,12 +512,11 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     public function testParseAccessTokenResponseReturnsInstanceOfStdOAuth1Token()
     {
-
-        $credentials    = $this->getCredentials();
-        $httpClient     = $this->getHttpClient();
-        $tokenStorage   = $this->getTokenStorage();
-        $signature      = $this->getSignature();
-        $uri            = $this->getUri();
+        $credentials = $this->getCredentials();
+        $httpClient = $this->getHttpClient();
+        $tokenStorage = $this->getTokenStorage();
+        $signature = $this->getSignature();
+        $uri = $this->getUri();
 
         $magento = $this->getMagentoService($credentials, $httpClient, $tokenStorage, $signature, $uri);
 
@@ -533,10 +532,10 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      * Get Magento service instance
      *
      * @param  CredentialsInterface  $credentials
-     * @param  ClientInterface       $httpClient
-     * @param  TokenStorageInterface $tokenStorage
-     * @param  SignatureInterface    $signature
-     * @param  Uri                   $uri
+     * @param  ClientInterface  $httpClient
+     * @param  TokenStorageInterface  $tokenStorage
+     * @param  SignatureInterface  $signature
+     * @param  Uri  $uri
      * @return Magento
      */
     protected function getMagentoService(CredentialsInterface $credentials, ClientInterface $httpClient, TokenStorageInterface $tokenStorage, SignatureInterface $signature, Uri $uri = null)
@@ -575,7 +574,6 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      *
      * @return OAuth\Common\Storage\TokenStorageInterface
      */
-
     protected function getTokenStorage()
     {
         $mockTokenStorage = $this->getMock('OAuth\Common\Storage\TokenStorageInterface');

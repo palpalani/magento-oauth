@@ -6,25 +6,29 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace JonnyW\MagentoOAuth\OAuth1\Service;
 
+use OAuth\Common\Consumer\CredentialsInterface;
+use OAuth\Common\Exception\Exception;
+use OAuth\Common\Http\Client\ClientInterface;
+use OAuth\Common\Http\Exception\TokenResponseException;
+use OAuth\Common\Http\Uri\UriInterface;
+use OAuth\Common\Storage\TokenStorageInterface;
 use OAuth\OAuth1\Service\AbstractService;
 use OAuth\OAuth1\Signature\SignatureInterface;
 use OAuth\OAuth1\Token\StdOAuth1Token;
-use OAuth\Common\Http\Exception\TokenResponseException;
-use OAuth\Common\Consumer\CredentialsInterface;
-use OAuth\Common\Http\Client\ClientInterface;
 use OAuth\OAuth1\Token\TokenInterface;
-use OAuth\Common\Http\Uri\UriInterface;
-use OAuth\Common\Storage\TokenStorageInterface;
-use OAuth\Common\Exception\Exception;
 
 class Magento extends AbstractService
 {
-    const REQUEST_TOKEN_ENDPOINT             = '/oauth/initiate';
-    const ACCESS_TOKEN_ENDPOINT              = '/oauth/token';
-    const AUTHORIZATION_ENDPOINT_CUSTOMER    = '/oauth/authorize';
-    const AUTHORIZATION_ENDPOINT_ADMIN       = '/admin/oauth_authorize';
+    const REQUEST_TOKEN_ENDPOINT = '/oauth/initiate';
+
+    const ACCESS_TOKEN_ENDPOINT = '/oauth/token';
+
+    const AUTHORIZATION_ENDPOINT_CUSTOMER = '/oauth/authorize';
+
+    const AUTHORIZATION_ENDPOINT_ADMIN = '/admin/oauth_authorize';
 
     /**
      * Authorization endpoint
@@ -37,10 +41,10 @@ class Magento extends AbstractService
      * Internal constructor
      *
      * @param  CredentialsInterface  $credentials
-     * @param  ClientInterface       $httpClient
-     * @param  TokenStorageInterface $storage
-     * @param  SignatureInterface    $signature
-     * @param  UriInterface          $baseApiUri
+     * @param  ClientInterface  $httpClient
+     * @param  TokenStorageInterface  $storage
+     * @param  SignatureInterface  $signature
+     * @param  UriInterface  $baseApiUri
      * @return void
      */
     public function __construct(CredentialsInterface $credentials, ClientInterface $httpClient, TokenStorageInterface $storage, SignatureInterface $signature, UriInterface $baseApiUri = null)
@@ -70,17 +74,17 @@ class Magento extends AbstractService
     /**
      * Set authorization endpoint
      *
-     * @param  string $endpoint
+     * @param  string  $endpoint
      * @return void
      */
     public function setAuthorizationEndpoint($endpoint)
     {
-        $validEndpoints = array(
+        $validEndpoints = [
             self::AUTHORIZATION_ENDPOINT_CUSTOMER,
-            self::AUTHORIZATION_ENDPOINT_ADMIN
-        );
+            self::AUTHORIZATION_ENDPOINT_ADMIN,
+        ];
 
-        if (!in_array($endpoint, $validEndpoints)) {
+        if (! in_array($endpoint, $validEndpoints)) {
             throw new Exception('Authorization endpoint is invalid.');
         }
 
@@ -116,7 +120,7 @@ class Magento extends AbstractService
     /**
      * Parse request token response
      *
-     * @param  string         $responseBody
+     * @param  string  $responseBody
      * @return StdOAuth1Token
      */
     protected function parseRequestTokenResponse($responseBody)
@@ -125,7 +129,7 @@ class Magento extends AbstractService
 
         $this->validateTokenResponse($data);
 
-        if (!isset($data['oauth_callback_confirmed']) || $data['oauth_callback_confirmed'] !== 'true') {
+        if (! isset($data['oauth_callback_confirmed']) || $data['oauth_callback_confirmed'] !== 'true') {
             throw new TokenResponseException('Error in retrieving token.');
         }
 
@@ -135,7 +139,7 @@ class Magento extends AbstractService
     /**
      * Parse access token response
      *
-     * @param  string         $responseBody
+     * @param  string  $responseBody
      * @return StdOAuth1Token
      */
     protected function parseAccessTokenResponse($responseBody)
@@ -163,24 +167,24 @@ class Magento extends AbstractService
     /**
      * Validate token response
      *
-     * @param  array|null $data
+     * @param  array|null  $data
      * @return void
      */
     protected function validateTokenResponse($data)
     {
-        if (is_null($data) || !is_array($data)) {
+        if (is_null($data) || ! is_array($data)) {
             throw new TokenResponseException('Response body is in an invalid format');
         }
 
         if (isset($data['error'])) {
-            throw new TokenResponseException('Error creating token: "' . $data['error'] . '"');
+            throw new TokenResponseException('Error creating token: "'.$data['error'].'"');
         }
 
-        if (!isset($data['oauth_token'])) {
+        if (! isset($data['oauth_token'])) {
             throw new TokenResponseException('Error creating token: \'oauth_token\' was not found in response body');
         }
 
-        if (!isset($data['oauth_token_secret'])) {
+        if (! isset($data['oauth_token_secret'])) {
             throw new TokenResponseException('Error creating token: \'oauth_token_secret\' was not found in response body');
         }
     }
@@ -191,11 +195,10 @@ class Magento extends AbstractService
      *
      *  - Adds oauth_verifier to auth header for Magento
      *
-     * @param string         $method
-     * @param UriInterface   $uri
-     * @param TokenInterface $token
-     * @param array          $bodyParams
-     *
+     * @param  string  $method
+     * @param  UriInterface  $uri
+     * @param  TokenInterface  $token
+     * @param  array  $bodyParams
      * @return string
      */
     protected function buildAuthorizationHeaderForAPIRequest($method, UriInterface $uri, TokenInterface $token, $bodyParams = null)
@@ -212,12 +215,12 @@ class Magento extends AbstractService
             $parameters['oauth_verifier'] = $bodyParams['oauth_verifier'];
         }
 
-        $parameters     = array_merge($parameters, array('oauth_token' => $token->getAccessToken()));
-        $mergedParams   = array_merge($parameters, is_array($bodyParams) ? $bodyParams : array());
+        $parameters = array_merge($parameters, ['oauth_token' => $token->getAccessToken()]);
+        $mergedParams = array_merge($parameters, is_array($bodyParams) ? $bodyParams : []);
 
         $parameters['oauth_signature'] = $this->signature->getSignature($uri, $mergedParams, $method);
 
-        $authorizationHeader = array();
+        $authorizationHeader = [];
 
         foreach ($parameters as $key => $value) {
             $authorizationHeader[] = sprintf('%1$s="%2$s"', rawurlencode($key), rawurlencode($value));

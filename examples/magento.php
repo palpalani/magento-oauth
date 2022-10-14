@@ -6,29 +6,29 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-use OAuth\Common\Storage\Session;
+use JonnyW\MagentoOAuth\OAuth1\Service\Magento;
 use OAuth\Common\Consumer\Credentials;
 use OAuth\Common\Http\Uri\UriFactory;
+use OAuth\Common\Storage\Session;
 use OAuth\ServiceFactory;
-use JonnyW\MagentoOAuth\OAuth1\Service\Magento;
 
 /**
  * Autoload
  */
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__.'/../vendor/autoload.php';
 
 /**
  * Consumer credentials
  */
-$applicationUrl     = 'http://magento.local';
-$consumerKey        = 'd19e5e1ce0a8298a32fafc2d1d50227b';
-$consumerSecret     = '7c230aba0da67e2ab462f88e6e83ee39';
+$applicationUrl = 'http://magento.local';
+$consumerKey = 'd19e5e1ce0a8298a32fafc2d1d50227b';
+$consumerSecret = '7c230aba0da67e2ab462f88e6e83ee39';
 
 /**
  * Setup service
  */
-$storage        = new Session();
-$uriFactory     = new UriFactory();
+$storage = new Session();
+$uriFactory = new UriFactory();
 
 $serviceFactory = new ServiceFactory();
 $serviceFactory->registerService('magento', 'JonnyW\MagentoOAuth\OAuth1\Service\Magento');
@@ -44,7 +44,7 @@ $credentials = new Credentials(
     $currentUri->getAbsoluteUri()
 );
 
-$magentoService = $serviceFactory->createService('magento', $credentials, $storage, array(), $baseUri);
+$magentoService = $serviceFactory->createService('magento', $credentials, $storage, [], $baseUri);
 $magentoService->setAuthorizationEndpoint(Magento::AUTHORIZATION_ENDPOINT_ADMIN);
 
 /**
@@ -54,27 +54,25 @@ $magentoService->setAuthorizationEndpoint(Magento::AUTHORIZATION_ENDPOINT_ADMIN)
 // +++++++++++++++++++++++++ //
 // AUTHENTICATION CANCELLED  //
 // +++++++++++++++++++++++++ //
-if(isset($_GET['rejected'])) {
-     echo '<p>OAuth authentication was cancelled.</p>';
+if (isset($_GET['rejected'])) {
+    echo '<p>OAuth authentication was cancelled.</p>';
 }
 
 // +++++++++++++++++++++++++ //
 // AUTHENTICATE WITH MAGENTO //
 // +++++++++++++++++++++++++ //
-elseif(isset($_GET['authenticate'])) {
-
+elseif (isset($_GET['authenticate'])) {
     // extra request needed for oauth1 to request a request token :-)
-    $token     = $magentoService->requestRequestToken();
-    $url     = $magentoService->getAuthorizationUri(array('oauth_token' => $token->getRequestToken()));
-    
-    header('Location: ' . $url);
-} 
+    $token = $magentoService->requestRequestToken();
+    $url = $magentoService->getAuthorizationUri(['oauth_token' => $token->getRequestToken()]);
+
+    header('Location: '.$url);
+}
 
 // +++++++++++++++++++++++++++++++++++++ //
 // GET ACCESS TOKEN AFTER AUTHENTICATION //
 // +++++++++++++++++++++++++++++++++++++ //
-elseif(!empty($_GET['oauth_token'])) {
-
+elseif (! empty($_GET['oauth_token'])) {
     $token = $storage->retrieveAccessToken('Magento');
 
     // This was a callback request from twitter, get the token
@@ -85,17 +83,16 @@ elseif(!empty($_GET['oauth_token'])) {
     );
 
     // Send a request now that we have access token
-    $result = $magentoService->request('/api/rest/customers', 'GET', null, array('Accept' => '*/*'));
+    $result = $magentoService->request('/api/rest/customers', 'GET', null, ['Accept' => '*/*']);
 
-    echo 'result: <pre>' . print_r(json_decode($result), true) . '</pre>';
-} 
+    echo 'result: <pre>'.print_r(json_decode($result), true).'</pre>';
+}
 
 // +++++++ //
 // DEFAULT //
 // +++++++ //
 else {
+    $url = $currentUri->getRelativeUri().'?authenticate=true';
 
-    $url = $currentUri->getRelativeUri() . '?authenticate=true';
-    
-    echo '<a href="' . $url . '" title="Authenticate">Authenticate!</a>';
+    echo '<a href="'.$url.'" title="Authenticate">Authenticate!</a>';
 }
