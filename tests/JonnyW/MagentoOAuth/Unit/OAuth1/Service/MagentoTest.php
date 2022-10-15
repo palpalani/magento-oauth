@@ -15,13 +15,14 @@ use OAuth\Common\Http\Client\ClientInterface;
 use OAuth\Common\Http\Uri\Uri;
 use OAuth\Common\Storage\TokenStorageInterface;
 use OAuth\OAuth1\Signature\SignatureInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Magento OAuth
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class MagentoTest extends \PHPUnit_Framework_TestCase
+class MagentoTest extends TestCase
 {
     /**
      * Test that OAuth common exception is thrown
@@ -31,7 +32,7 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     public function testOAuthCommonExceptionIsThrownWhenNoBaseUriInstanceIsSetInConstructor()
     {
-        $this->setExpectedException('OAuth\Common\Exception\Exception');
+        $this->expectException(OAuth\Common\Exception\Exception::class);
 
         $credentials = $this->getCredentials();
         $httpClient = $this->getHttpClient();
@@ -113,7 +114,7 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetAuthorizeEndpointThrowsOAuthCommonExceptionIfEndpointIsInvalid()
     {
-        $this->setExpectedException('OAuth\Common\Exception\Exception');
+        $this->expectException(OAuth\Common\Exception\Exception::class);
 
         $credentials = $this->getCredentials();
         $httpClient = $this->getHttpClient();
@@ -241,7 +242,7 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     public function testParseRequestTokenResponseThrowsTokenResponseExceptionIfResponseBodyIsNull()
     {
-        $this->setExpectedException('OAuth\Common\Http\Exception\TokenResponseException');
+        $this->expectException(OAuth\Common\Http\Exception\TokenResponseException::class);
 
         $credentials = $this->getCredentials();
         $httpClient = $this->getHttpClient();
@@ -265,7 +266,7 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     public function testParseRequestTokenResponseThrowsTokenResponseExceptionIfResponseBodyIsNotAnArray()
     {
-        $this->setExpectedException('OAuth\Common\Http\Exception\TokenResponseException');
+        $this->expectException(OAuth\Common\Http\Exception\TokenResponseException::class);
 
         $credentials = $this->getCredentials();
         $httpClient = $this->getHttpClient();
@@ -289,7 +290,7 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     public function testParseRequestTokenResponseThrowsTokenResponseExceptionIfOAuthCallbackConfirmedIsNotSet()
     {
-        $this->setExpectedException('OAuth\Common\Http\Exception\TokenResponseException');
+        $this->expectException(OAuth\Common\Http\Exception\TokenResponseException::class);
 
         $credentials = $this->getCredentials();
         $httpClient = $this->getHttpClient();
@@ -315,7 +316,7 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     public function testParseRequestTokenResponseThrowsTokenResponseExceptionIfOAuthCallbackConfirmedIsNotSetToTrue()
     {
-        $this->setExpectedException('OAuth\Common\Http\Exception\TokenResponseException');
+        $this->expectException(OAuth\Common\Http\Exception\TokenResponseException::class);
 
         $credentials = $this->getCredentials();
         $httpClient = $this->getHttpClient();
@@ -340,7 +341,7 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     public function testParseRequestTokenResponseThrowsTokenResponseExceptionIfOAuthTokenIsNotSet()
     {
-        $this->setExpectedException('OAuth\Common\Http\Exception\TokenResponseException');
+        $this->expectException(OAuth\Common\Http\Exception\TokenResponseException::class);
 
         $credentials = $this->getCredentials();
         $httpClient = $this->getHttpClient();
@@ -365,7 +366,7 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     public function testParseRequestTokenResponseThrowsTokenResponseExceptionIfOAuthTokenSecretIsNotSet()
     {
-        $this->setExpectedException('OAuth\Common\Http\Exception\TokenResponseException');
+        $this->expectException(OAuth\Common\Http\Exception\TokenResponseException::class);
 
         $credentials = $this->getCredentials();
         $httpClient = $this->getHttpClient();
@@ -415,7 +416,7 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     public function testParseAccessTokenResponseThrowsTokenResponseExceptionIfResponseBodyIsNull()
     {
-        $this->setExpectedException('OAuth\Common\Http\Exception\TokenResponseException');
+        $this->expectException(OAuth\Common\Http\Exception\TokenResponseException::class);
 
         $credentials = $this->getCredentials();
         $httpClient = $this->getHttpClient();
@@ -439,7 +440,7 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     public function testParseAccessTokenResponseThrowsTokenResponseExceptionIfResponseBodyIsNotAnArray()
     {
-        $this->setExpectedException('OAuth\Common\Http\Exception\TokenResponseException');
+        $this->expectException(OAuth\Common\Http\Exception\TokenResponseException::class);
 
         $credentials = $this->getCredentials();
         $httpClient = $this->getHttpClient();
@@ -462,7 +463,7 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     public function testParseAccessTokenResponseThrowsTokenResponseExceptionIfOAuthTokenIsNotSet()
     {
-        $this->setExpectedException('OAuth\Common\Http\Exception\TokenResponseException');
+        $this->expectException(OAuth\Common\Http\Exception\TokenResponseException::class);
 
         $credentials = $this->getCredentials();
         $httpClient = $this->getHttpClient();
@@ -487,7 +488,7 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     public function testParseAccessTokenResponseThrowsTokenResponseExceptionIfOAuthTokenSecretIsNotSet()
     {
-        $this->setExpectedException('OAuth\Common\Http\Exception\TokenResponseException');
+        $this->expectException(OAuth\Common\Http\Exception\TokenResponseException::class);
 
         $credentials = $this->getCredentials();
         $httpClient = $this->getHttpClient();
@@ -552,7 +553,7 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     protected function getCredentials()
     {
-        $mockCredentials = $this->getMock('OAuth\Common\Consumer\CredentialsInterface');
+        $mockCredentials = $this->createMock(OAuth\Common\Consumer\CredentialsInterface::class);
 
         return $mockCredentials;
     }
@@ -564,7 +565,7 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     protected function getHttpClient()
     {
-        $mockHttpClient = $this->getMock('OAuth\Common\Http\Client\ClientInterface');
+        $mockHttpClient = $this->createMock(OAuth\Common\Http\Client\ClientInterface::class);
 
         return $mockHttpClient;
     }
@@ -576,7 +577,7 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     protected function getTokenStorage()
     {
-        $mockTokenStorage = $this->getMock('OAuth\Common\Storage\TokenStorageInterface');
+        $mockTokenStorage = $this->createMock(OAuth\Common\Storage\TokenStorageInterface::class);
 
         return $mockTokenStorage;
     }
@@ -588,7 +589,7 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     protected function getSignature()
     {
-        $mockSignature = $this->getMock('OAuth\OAuth1\Signature\SignatureInterface');
+        $mockSignature = $this->createMock(OAuth\OAuth1\Signature\SignatureInterface::class);
 
         return $mockSignature;
     }
@@ -600,7 +601,7 @@ class MagentoTest extends \PHPUnit_Framework_TestCase
      */
     protected function getUri()
     {
-        $mockUri = $this->getMock('OAuth\Common\Http\Uri\Uri');
+        $mockUri = $this->createMock(OAuth\Common\Http\Uri\Uri::class);
 
         return $mockUri;
     }
