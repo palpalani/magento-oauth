@@ -16,13 +16,20 @@
     ],
     "minimum-stability": "stable",
     "require": {
-    	"php": ">=5.3.0",
-        "lusitanian/oauth": "*"
+    	"php": "^8.0",
+        "lusitanian/oauth": "dev-master"
     },
     "require-dev": {
         "laravel/pint": "^1.2",
         "pestphp/pest": "^1.20"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:palpalani/PHPoAuthLib.git",
+            "no-api": true
+        }
+    ],
     "autoload": {
         "psr-4": {
             "JonnyW\\MagentoOAuth\\": "src"
