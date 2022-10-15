@@ -15,7 +15,7 @@ use OAuth\ServiceFactory;
 /**
  * Autoload
  */
-require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 /**
  * Consumer credentials
@@ -66,7 +66,7 @@ elseif (isset($_GET['authenticate'])) {
     $token = $magentoService->requestRequestToken();
     $url = $magentoService->getAuthorizationUri(['oauth_token' => $token->getRequestToken()]);
 
-    header('Location: '.$url);
+    header('Location: ' . $url);
 }
 
 // +++++++++++++++++++++++++++++++++++++ //
@@ -85,14 +85,14 @@ elseif (! empty($_GET['oauth_token'])) {
     // Send a request now that we have access token
     $result = $magentoService->request('/api/rest/customers', 'GET', null, ['Accept' => '*/*']);
 
-    echo 'result: <pre>'.print_r(json_decode($result), true).'</pre>';
+    echo 'result: <pre>' . print_r(json_decode($result), true) . '</pre>';
 }
 
 // +++++++ //
 // DEFAULT //
 // +++++++ //
 else {
-    $url = $currentUri->getRelativeUri().'?authenticate=true';
+    $url = $currentUri->getRelativeUri() . '?authenticate=true';
 
-    echo '<a href="'.$url.'" title="Authenticate">Authenticate!</a>';
+    echo '<a href="' . $url . '" title="Authenticate">Authenticate!</a>';
 }

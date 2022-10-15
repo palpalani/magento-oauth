@@ -177,7 +177,7 @@ class Magento extends AbstractService
         }
 
         if (isset($data['error'])) {
-            throw new TokenResponseException('Error creating token: "'.$data['error'].'"');
+            throw new TokenResponseException('Error creating token: "' . $data['error'] . '"');
         }
 
         if (! isset($data['oauth_token'])) {
