@@ -40,10 +40,6 @@ class Magento extends AbstractService
     /**
      * Internal constructor
      *
-     * @param  CredentialsInterface  $credentials
-     * @param  ClientInterface  $httpClient
-     * @param  TokenStorageInterface  $storage
-     * @param  SignatureInterface  $signature
      * @param  UriInterface  $baseApiUri
      * @return void
      */
@@ -196,8 +192,6 @@ class Magento extends AbstractService
      *  - Adds oauth_verifier to auth header for Magento
      *
      * @param  string  $method
-     * @param  UriInterface  $uri
-     * @param  TokenInterface  $token
      * @param  array  $bodyParams
      * @return string
      */

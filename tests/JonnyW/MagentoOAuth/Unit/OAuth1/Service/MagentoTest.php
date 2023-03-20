@@ -532,10 +532,6 @@ class MagentoTest extends TestCase
     /**
      * Get Magento service instance
      *
-     * @param  CredentialsInterface  $credentials
-     * @param  ClientInterface  $httpClient
-     * @param  TokenStorageInterface  $tokenStorage
-     * @param  SignatureInterface  $signature
      * @param  Uri  $uri
      * @return Magento
      */
