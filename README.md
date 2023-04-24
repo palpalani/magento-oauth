@@ -3,10 +3,9 @@
 A service class for Magento OAuth using the [Lusitanian PHP OAuth](https://github.com/Lusitanian/PHPoAuthLib) library.
 
 [![Total Downloads](https://poser.pugx.org/jonnyw/magento-oauth/downloads.png)](https://packagist.org/packages/jonnyw/magento-oauth) 
-[![Latest Stable Version](https://poser.pugx.org/jonnyw/magento-oauth/v/stable.png)](https://packagist.org/packages/jonnyw/magento-oauth)
-[![Latest Version](https://img.shields.io/github/release/palpalani/magento-oauth.svg?style=flat)](https://github.com/palpalani/magento-oauth/releases)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/palpalani/magento-oauth/run-tests?label=tests)](https://github.com/palpalani/magento-oauth/actions?query=workflow%3ATests+branch%3Amaster)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/palpalani/magento-oauth/Check%20&%20fix%20styling?label=code%20style)](https://github.com/palpalani/magento-oauth/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/palpalani/magento-oauth.svg?style=flat-square)](https://packagist.org/packages/palpalani/magento-oauth)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/palpalani/magento-oauth/run-tests.yml?branch=master&label=tests&style=flat-square)](https://github.com/palpalani/magento-oauth/actions?query=workflow%3Arun-tests+branch%3Amaster)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/palpalani/magento-oauth/fix-php-code-style-issues.yml?branch=master&label=code%20style&style=flat-square)]
 
 ## Examples
 ------------
